@@ -75,6 +75,7 @@ func (this *Array) Delete(index uint) (int, error) {
 		return 0, errors.New("out of index range")
 	}
 	v := this.data[index]
+	// BUG: 当length=0时，uint类型数据减一是很大的正数，导致不必要的遍历发生，应该避免
 	for i := index; i < this.Len()-1; i++ {
 		this.data[i] = this.data[i+1]
 	}
